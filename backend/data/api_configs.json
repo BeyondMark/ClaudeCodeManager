@@ -1,0 +1,32 @@
+{
+  "api_profiles": [
+    {
+      "id": "94b850b7-073f-4f56-9fac-94baec761c5c",
+      "name": "YourAPI",
+      "api_key": "sk-hZS0j62UK0wmlrf9ps0Ja8Ub8cCJ0bSZXrNbbkjaqEsPoCE7",
+      "base_url": "https://yourapi.cn",
+      "created_at": "2025-08-07T09:02:06.170352",
+      "is_active": true
+    },
+    {
+      "id": "929d7f46-56c7-4e72-8c60-94d69b0aa0cf",
+      "name": "InstCopilotAPI",
+      "api_key": "sk-qoYxZ0DDam8rot3sOfR7zuHuD8hY08j4sNJiZI6b4H9zFjC4",
+      "base_url": "https://sg.instcopilot-api.com",
+      "created_at": "2025-08-07T09:02:51.733313",
+      "is_active": false
+    },
+    {
+      "id": "ed6d87e6-647f-4c64-9c5a-413f4726ac60",
+      "name": "ClaudeHub",
+      "api_key": "sk-dnXq6hD5L7Ts9aImZM7Fb57Y1aAxUuZwNH5vwj3NyuuxQZg5",
+      "base_url": "https://api.qinzhiai.com",
+      "created_at": "2025-08-07T09:04:40.845986",
+      "is_active": false
+    }
+  ],
+  "metadata": {
+    "last_updated": "2025-08-07T09:13:02.903822",
+    "version": "1.0"
+  }
+}

@@ -226,10 +226,10 @@ class ApiConfigManager:
 
 ## 🌐 服务地址
 
-- **前端界面**: http://localhost:5173
-- **后端API**: http://localhost:8000
-- **API文档**: http://localhost:8000/docs
-- **ReDoc文档**: http://localhost:8000/redoc
+- **前端界面**: http://localhost:50001
+- **后端API**: http://localhost:50000
+- **API文档**: http://localhost:50000/docs
+- **ReDoc文档**: http://localhost:50000/redoc
 
 ## 📁 项目结构
 
@@ -280,9 +280,9 @@ cd frontend && npm run type-check      # 类型检查
 ## 📚 API文档
 
 ### 基础信息
-- **Base URL**: `http://localhost:8000/api/v1/api-config`
+- **Base URL**: `http://localhost:50000/api/v1/api-config`
 - **Content-Type**: `application/json`
-- **Interactive API文档**: http://localhost:8000/docs
+- **Interactive API文档**: http://localhost:50000/docs
 
 ### 核心端点
 
@@ -437,10 +437,10 @@ pip install -r requirements.txt
 
 3. **端口占用**:
 ```bash
-# 检查端口8000是否被占用
-lsof -i :8000
+# 检查端口50000是否被占用
+lsof -i :50000
 # 或在Windows中
-netstat -ano | findstr :8000
+netstat -ano | findstr :50000
 ```
 
 4. **权限问题**: 确保当前用户有写入`data/`目录的权限
@@ -448,12 +448,12 @@ netstat -ano | findstr :8000
 #### 前端无法连接后端
 1. **后端健康检查**:
 ```bash
-curl http://localhost:8000/health
+curl http://localhost:50000/health
 # 应该返回: {"status": "healthy", "timestamp": "2025-08-07"}
 ```
 
 2. **CORS配置**: 检查后端`main.py`中的CORS设置
-3. **防火墙设置**: 确保本地防火墙允许8000和5173端口
+3. **防火墙设置**: 确保本地防火墙允许50000和50001端口
 
 #### 配置同步失败
 1. **Claude设置文件路径**:
@@ -569,11 +569,11 @@ EOF
 cat > backend/.env << 'EOF'
 # API配置
 API_HOST=0.0.0.0
-API_PORT=8000
+API_PORT=50000
 DEBUG=true
 
 # CORS配置
-ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+ALLOWED_ORIGINS=http://localhost:50001,http://127.0.0.1:50001
 
 # 日志级别
 LOG_LEVEL=INFO
@@ -581,7 +581,7 @@ EOF
 
 # 前端环境变量
 cat > frontend/.env.development << 'EOF'
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=http://localhost:50000
 VITE_APP_TITLE=ClaudeCodeManager
 VITE_APP_VERSION=1.0.0
 EOF
@@ -598,9 +598,9 @@ cd frontend
 npm run dev
 
 # 验证服务
-curl http://localhost:8000/health
-curl http://localhost:8000/api/v1/api-config/status
-open http://localhost:5173
+curl http://localhost:50000/health
+curl http://localhost:50000/api/v1/api-config/status
+open http://localhost:50001
 ```
 
 ### 性能优化建议

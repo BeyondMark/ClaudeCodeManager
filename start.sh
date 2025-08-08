@@ -122,17 +122,17 @@ check_dependencies() {
 check_ports() {
     log_info "检查端口占用..."
     
-    # 检查8000端口（后端）
-    if lsof -Pi :8000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-        log_warning "端口8000已被占用，将尝试终止相关进程"
-        pkill -f ":8000" 2>/dev/null || true
+    # 检查50000端口（后端）
+    if lsof -Pi :50000 -sTCP:LISTEN -t >/dev/null 2>&1; then
+        log_warning "端口50000已被占用，将尝试终止相关进程"
+        pkill -f ":50000" 2>/dev/null || true
         sleep 2
     fi
     
-    # 检查5173端口（前端）
-    if lsof -Pi :5173 -sTCP:LISTEN -t >/dev/null 2>&1; then
-        log_warning "端口5173已被占用，将尝试终止相关进程"
-        pkill -f ":5173" 2>/dev/null || true
+    # 检查50001端口（前端）
+    if lsof -Pi :50001 -sTCP:LISTEN -t >/dev/null 2>&1; then
+        log_warning "端口50001已被占用，将尝试终止相关进程"
+        pkill -f ":50001" 2>/dev/null || true
         sleep 2
     fi
     
@@ -198,8 +198,8 @@ start_backend() {
     # 等待后端启动
     log_info "等待后端服务就绪..."
     for i in {1..30}; do
-        if curl -s http://localhost:8000/health > /dev/null 2>&1; then
-            log_success "后端服务启动成功 → http://localhost:8000"
+        if curl -s http://localhost:50000/health > /dev/null 2>&1; then
+            log_success "后端服务启动成功 → http://localhost:50000"
             break
         fi
         
@@ -233,8 +233,8 @@ start_frontend() {
     # 等待前端启动
     log_info "等待前端服务就绪..."
     for i in {1..60}; do
-        if curl -s http://localhost:5173 > /dev/null 2>&1; then
-            log_success "前端服务启动成功 → http://localhost:5173"
+        if curl -s http://localhost:50001 > /dev/null 2>&1; then
+            log_success "前端服务启动成功 → http://localhost:50001"
             break
         fi
         
@@ -262,14 +262,14 @@ show_services() {
     log_header "🎉 ClaudeCodeManager 启动完成!"
     echo
     echo "📱 服务地址:"
-    echo "   前端界面: ${CYAN}http://localhost:5173${NC}"
-    echo "   后端API:  ${CYAN}http://localhost:8000${NC}"
-    echo "   API文档:  ${CYAN}http://localhost:8000/docs${NC}"
-    echo "   ReDoc:    ${CYAN}http://localhost:8000/redoc${NC}"
+    echo -e "   前端界面: ${CYAN}http://localhost:50001${NC}"
+    echo -e "   后端API:  ${CYAN}http://localhost:50000${NC}"
+    echo -e "   API文档:  ${CYAN}http://localhost:50000/docs${NC}"
+    echo -e "   ReDoc:    ${CYAN}http://localhost:50000/redoc${NC}"
     echo
     echo "📊 服务状态:"
-    echo "   后端: ${GREEN}运行中${NC} (PID: $(cat $BACKEND_PID_FILE 2>/dev/null || echo 'N/A'))"
-    echo "   前端: ${GREEN}运行中${NC} (PID: $(cat $FRONTEND_PID_FILE 2>/dev/null || echo 'N/A'))"
+    echo -e "   后端: ${GREEN}运行中${NC} (PID: $(cat $BACKEND_PID_FILE 2>/dev/null || echo 'N/A'))"
+    echo -e "   前端: ${GREEN}运行中${NC} (PID: $(cat $FRONTEND_PID_FILE 2>/dev/null || echo 'N/A'))"
     echo
     echo "📝 日志文件:"
     echo "   后端日志: backend.log"
@@ -290,7 +290,7 @@ check_services() {
     log_info "检查服务状态..."
     
     # 检查后端
-    if curl -s http://localhost:8000/health > /dev/null 2>&1; then
+    if curl -s http://localhost:50000/health > /dev/null 2>&1; then
         log_success "后端服务正常"
     else
         log_error "后端服务异常"
@@ -298,7 +298,7 @@ check_services() {
     fi
     
     # 检查前端
-    if curl -s http://localhost:5173 > /dev/null 2>&1; then
+    if curl -s http://localhost:50001 > /dev/null 2>&1; then
         log_success "前端服务正常"
     else
         log_error "前端服务异常"

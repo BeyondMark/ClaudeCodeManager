@@ -117,21 +117,21 @@ goto :eof
 :check_ports
 call :log_info "检查端口占用..."
 
-:: 检查端口8000
-netstat -an | find "8000" | find "LISTENING" >nul 2>&1
+:: 检查端口50000
+netstat -an | find "50000" | find "LISTENING" >nul 2>&1
 if !errorlevel! equ 0 (
-    call :log_warning "端口8000已被占用，将尝试释放"
-    for /f "tokens=5" %%a in ('netstat -ano ^| find "8000" ^| find "LISTENING"') do (
+    call :log_warning "端口50000已被占用，将尝试释放"
+    for /f "tokens=5" %%a in ('netstat -ano ^| find "50000" ^| find "LISTENING"') do (
         taskkill /f /pid %%a >nul 2>&1 || true
     )
     timeout /t 2 >nul
 )
 
-:: 检查端口5173
-netstat -an | find "5173" | find "LISTENING" >nul 2>&1
+:: 检查端口50001
+netstat -an | find "50001" | find "LISTENING" >nul 2>&1
 if !errorlevel! equ 0 (
-    call :log_warning "端口5173已被占用，将尝试释放"
-    for /f "tokens=5" %%a in ('netstat -ano ^| find "5173" ^| find "LISTENING"') do (
+    call :log_warning "端口50001已被占用，将尝试释放"
+    for /f "tokens=5" %%a in ('netstat -ano ^| find "50001" ^| find "LISTENING"') do (
         taskkill /f /pid %%a >nul 2>&1 || true
     )
     timeout /t 2 >nul
@@ -195,9 +195,9 @@ call :log_info "等待后端服务就绪..."
 set /a count=0
 :wait_backend
 set /a count+=1
-curl -s http://localhost:8000/health >nul 2>&1
+curl -s http://localhost:50000/health >nul 2>&1
 if !errorlevel! equ 0 (
-    call :log_success "后端服务启动成功 → http://localhost:8000"
+    call :log_success "后端服务启动成功 → http://localhost:50000"
     goto :backend_ready
 )
 
@@ -230,9 +230,9 @@ call :log_info "等待前端服务就绪..."
 set /a count=0
 :wait_frontend
 set /a count+=1
-curl -s http://localhost:5173 >nul 2>&1
+curl -s http://localhost:50001 >nul 2>&1
 if !errorlevel! equ 0 (
-    call :log_success "前端服务启动成功 → http://localhost:5173"
+    call :log_success "前端服务启动成功 → http://localhost:50001"
     goto :frontend_ready
 )
 
@@ -263,10 +263,10 @@ echo.
 call :log_header "🎉 ClaudeCodeManager 启动完成!"
 echo.
 echo 📱 服务地址:
-echo    前端界面: %CYAN%http://localhost:5173%NC%
-echo    后端API:  %CYAN%http://localhost:8000%NC%
-echo    API文档:  %CYAN%http://localhost:8000/docs%NC%
-echo    ReDoc:    %CYAN%http://localhost:8000/redoc%NC%
+echo    前端界面: %CYAN%http://localhost:50001%NC%
+echo    后端API:  %CYAN%http://localhost:50000%NC%
+echo    API文档:  %CYAN%http://localhost:50000/docs%NC%
+echo    ReDoc:    %CYAN%http://localhost:50000/redoc%NC%
 echo.
 echo 📝 日志文件:
 echo    后端日志: backend.log
@@ -309,7 +309,7 @@ goto :monitor_loop
 :check_services_status
 call :log_info "检查服务状态..."
 
-curl -s http://localhost:8000/health >nul 2>&1
+curl -s http://localhost:50000/health >nul 2>&1
 if !errorlevel! equ 0 (
     call :log_success "后端服务正常"
 ) else (
@@ -317,7 +317,7 @@ if !errorlevel! equ 0 (
     exit /b 1
 )
 
-curl -s http://localhost:5173 >nul 2>&1
+curl -s http://localhost:50001 >nul 2>&1
 if !errorlevel! equ 0 (
     call :log_success "前端服务正常"
 ) else (

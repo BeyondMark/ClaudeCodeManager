@@ -1,0 +1,14 @@
+[32mINFO[0m:     Will watch for changes in these directories: ['/home/mark/workcspace/ClaudeCodeManager/backend']
+[32mINFO[0m:     Uvicorn running on [1mhttp://0.0.0.0:50000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     Started reloader process [[36m[1m661357[0m] using [36m[1mWatchFiles[0m
+[32mINFO[0m:     Started server process [[36m661361[0m]
+[32mINFO[0m:     Waiting for application startup.
+🚀 ClaudeCodeManager 启动中...
+[32mINFO[0m:     Application startup complete.
+[32mINFO[0m:     127.0.0.1:56684 - "[1mGET /health HTTP/1.1[0m" [32m200 OK[0m
+[32mINFO[0m:     Shutting down
+[32mINFO[0m:     Waiting for application shutdown.
+🛑 ClaudeCodeManager 正在关闭...
+[32mINFO[0m:     Application shutdown complete.
+[32mINFO[0m:     Finished server process [[36m661361[0m]
+[32mINFO[0m:     Stopping reloader process [[36m[1m661357[0m]

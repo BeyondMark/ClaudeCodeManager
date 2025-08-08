@@ -10,9 +10,16 @@ import type {
   StatusResponse
 } from '../types/api'
 
+// 动态获取API基础URL
+const getApiBaseUrl = () => {
+  // 获取当前访问的主机名（localhost 或 局域网IP）
+  const hostname = window.location.hostname
+  return `http://${hostname}:50000/api/v1/api-config`
+}
+
 // 配置axios默认值
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api/v1/api-config',
+  baseURL: getApiBaseUrl(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json'

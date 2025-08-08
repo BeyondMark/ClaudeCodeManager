@@ -1,0 +1,11 @@
+
+> frontend@0.0.0 dev
+> vite
+
+
+  VITE v7.1.0  ready in 213 ms
+
+  ➜  Local:   http://localhost:50001/
+  ➜  Network: http://192.168.50.153:50001/
+  ➜  Vue DevTools: Open http://localhost:50001/__devtools__/ as a separate window
+  ➜  Vue DevTools: Press Alt(⌥)+Shift(⇧)+D in App to toggle the Vue DevTools

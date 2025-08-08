@@ -38,7 +38,7 @@ pnpm install
 
 ### 开发命令
 ```bash
-# 启动开发服务器 (http://localhost:5173)
+# 启动开发服务器 (http://localhost:50001)
 npm run dev
 
 # 构建生产版本
@@ -108,7 +108,7 @@ frontend/
 ### 环境变量配置
 ```bash
 # .env.development
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=http://localhost:50000
 
 # .env.production  
 VITE_API_BASE_URL=https://your-api-domain.com
@@ -283,7 +283,7 @@ server {
     }
     
     location /api {
-        proxy_pass http://backend:8000;
+        proxy_pass http://backend:50000;
     }
 }
 ```

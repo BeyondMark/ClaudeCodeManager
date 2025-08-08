@@ -29,18 +29,18 @@ cd frontend && npm run lint
 
 ### API服务
 ```bash
-# 启动API服务 (http://localhost:8000)
+# 启动API服务 (http://localhost:50000)
 cd backend && python main.py
 
-# 启动前端界面 (http://localhost:5173)
+# 启动前端界面 (http://localhost:50001)
 cd frontend && npm run dev
 
 # 查看API文档
-# Swagger: http://localhost:8000/docs
-# ReDoc: http://localhost:8000/redoc
+# Swagger: http://localhost:50000/docs
+# ReDoc: http://localhost:50000/redoc
 
 # 测试API健康状态
-curl http://localhost:8000/health
+curl http://localhost:50000/health
 ```
 
 ## Architecture
